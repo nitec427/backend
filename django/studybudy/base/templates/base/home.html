@@ -1,0 +1,45 @@
+{% extends 'main.html' %} 
+{% block content %}
+<style>
+
+  .home-container{
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+  }
+</style>
+<div class="home-container">
+
+  <div>
+    <h3>Browse topics</h3>
+    <hr>
+    <ul>
+      <li><a href="{% url 'home' %}">All</a></li>
+      {% for topic in topics %}
+      <li><a href="{% url 'home'%}?q={{topic.name}} 
+       ">{{topic.name}}</a></li>
+      
+      {% endfor %}
+    
+    </ul>
+    
+  </div>
+
+  <div>
+    <a href="{% url 'createroom' %}">Create Room</a>
+    {% for room in rooms %}
+    <div>
+      <span>@{{room.host.username}}</span>
+      {% if request.user == room.host %}
+      <a href="{% url 'updateroom'   room.id %}">Edit Room</a>
+      <a href="{% url 'deleteroom' room.id %}">Delete Room</a>
+      {% endif %}
+      <a href="{% url 'room' room.id %}">{{ room.name }}</a>
+      
+    </div>
+
+  </div>
+</div>
+
+
+
+{% endfor %}{% endblock content %}

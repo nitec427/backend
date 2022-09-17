@@ -1,0 +1,10 @@
+db.sqlite3
+node_modules
+migrations
+__pycache__
+__init__.py
+*-lock.json
+Pipfile*
+*.db
+*.txt
+.gitignore
